@@ -1,6 +1,7 @@
 export default function Forms({ cvData, setCvData }) {
   return (
     <div>
+      <p className="sidebar-title">CV Builder</p>
       <GeneralForm cvData={cvData} setCvData={setCvData} />
       <EducationForm cvData={cvData} setCvData={setCvData} />
       <ExperienceForm cvData={cvData} setCvData={setCvData} />
@@ -9,82 +10,60 @@ export default function Forms({ cvData, setCvData }) {
 }
 
 function GeneralForm({ cvData, setCvData }) {
-  function handleGeneralChange(e) {
+  function handleChange(e) {
     setCvData({
       ...cvData,
-      general: {
-        ...cvData.general,
-        [e.target.name]: e.target.value,
-      },
+      general: { ...cvData.general, [e.target.name]: e.target.value },
     });
   }
 
   return (
-    <div>
-      <input
-        name="name"
-        type="text"
-        value={cvData.general.name}
-        onChange={handleGeneralChange}
-        placeholder="Name"
-      />
-
-      <input
-        name="email"
-        type="email"
-        value={cvData.general.email}
-        onChange={handleGeneralChange}
-        placeholder="Email"
-      />
-
-      <input
-        name="phone"
-        type="tel"
-        value={cvData.general.phone}
-        onChange={handleGeneralChange}
-        placeholder="Phone"
-      />
-    </div>
+    <section className="form-section">
+      <h2>Personal Info</h2>
+      <div className="fields">
+        <label>
+          Full Name
+          <input name="name" type="text" value={cvData.general.name} onChange={handleChange} placeholder="Jane Smith" />
+        </label>
+        <label>
+          Email
+          <input name="email" type="email" value={cvData.general.email} onChange={handleChange} placeholder="jane@example.com" />
+        </label>
+        <label>
+          Phone
+          <input name="phone" type="tel" value={cvData.general.phone} onChange={handleChange} placeholder="+1 555 000 0000" />
+        </label>
+      </div>
+    </section>
   );
 }
 
 function EducationForm({ cvData, setCvData }) {
-  function handleEducationChange(e) {
+  function handleChange(e) {
     setCvData({
       ...cvData,
-      education: {
-        ...cvData.education,
-        [e.target.name]: e.target.value,
-      },
+      education: { ...cvData.education, [e.target.name]: e.target.value },
     });
   }
 
   return (
-    <div>
-      <input
-        name="school"
-        type="text"
-        value={cvData.education.school}
-        onChange={handleEducationChange}
-        placeholder="School"
-      />
-
-      <input
-        name="degree"
-        type="text"
-        value={cvData.education.degree}
-        onChange={handleEducationChange}
-        placeholder="Degree"
-      />
-
-      <input
-        name="date"
-        type="text"
-        value={cvData.education.date}
-        onChange={handleEducationChange}
-        placeholder="Date"
-      />
-    </div>
+    <section className="form-section">
+      <h2>Education</h2>
+      <div className="fields">
+        <label>
+          School
+          <input name="school" type="text" value={cvData.education.school} onChange={handleChange} placeholder="University of Example" />
+        </label>
+        <label>
+          Degree / Field of Study
+          <input name="degree" type="text" value={cvData.education.degree} onChange={handleChange} placeholder="B.Sc. Computer Science" />
+        </label>
+        <label>
+          Date
+          <input name="date" type="text" value={cvData.education.date} onChange={handleChange} placeholder="2020 – 2024" />
+        </label>
+      </div>
+    </section>
   );
 }
 
@@ -106,6 +85,13 @@ function ExperienceForm({ cvData, setCvData }) {
     });
   }
 
+  function removeExperience(id) {
+    setCvData({
+      ...cvData,
+      experience: cvData.experience.filter((exp) => exp.id !== id),
+    });
+  }
+
   function updateExperience(id, field, value) {
     setCvData({
       ...cvData,
@@ -116,59 +102,47 @@ function ExperienceForm({ cvData, setCvData }) {
   }
 
   return (
-    <section>
+    <section className="form-section">
       <h2>Experience</h2>
 
       {cvData.experience.map((exp) => (
-        <div key={exp.id}>
-          <input
-            type="text"
-            placeholder="Company"
-            value={exp.company}
-            onChange={(e) =>
-              updateExperience(exp.id, "company", e.target.value)
-            }
-          />
-
-          <input
-            type="text"
-            placeholder="Position"
-            value={exp.position}
-            onChange={(e) =>
-              updateExperience(exp.id, "position", e.target.value)
-            }
-          />
-
-          <textarea
-            placeholder="Responsibilities"
-            value={exp.responsibilities}
-            onChange={(e) =>
-              updateExperience(exp.id, "responsibilities", e.target.value)
-            }
-          />
-
-          <input
-            type="text"
-            placeholder="Start Date"
-            value={exp.startDate}
-            onChange={(e) =>
-              updateExperience(exp.id, "startDate", e.target.value)
-            }
-          />
-
-          <input
-            type="text"
-            placeholder="End Date"
-            value={exp.endDate}
-            onChange={(e) =>
-              updateExperience(exp.id, "endDate", e.target.value)
-            }
-          />
+        <div key={exp.id} className="experience-entry">
+          <div className="entry-top">
+            <button
+              type="button"
+              className="btn-remove"
+              onClick={() => removeExperience(exp.id)}
+            >
+              ✕ Remove
+            </button>
+          </div>
+          <div className="fields">
+            <label>
+              Company
+              <input type="text" value={exp.company} placeholder="Acme Corp" onChange={(e) => updateExperience(exp.id, "company", e.target.value)} />
+            </label>
+            <label>
+              Position
+              <input type="text" value={exp.position} placeholder="Software Engineer" onChange={(e) => updateExperience(exp.id, "position", e.target.value)} />
+            </label>
+            <label>
+              Start Date
+              <input type="text" value={exp.startDate} placeholder="Jan 2023" onChange={(e) => updateExperience(exp.id, "startDate", e.target.value)} />
+            </label>
+            <label>
+              End Date
+              <input type="text" value={exp.endDate} placeholder="Present" onChange={(e) => updateExperience(exp.id, "endDate", e.target.value)} />
+            </label>
+            <label>
+              Responsibilities
+              <textarea value={exp.responsibilities} placeholder="Describe your main responsibilities..." onChange={(e) => updateExperience(exp.id, "responsibilities", e.target.value)} />
+            </label>
+          </div>
         </div>
       ))}
 
-      <button type="button" onClick={addExperience}>
-        Add Experience
+      <button type="button" className="btn-add" onClick={addExperience}>
+        + Add Experience
       </button>
     </section>
   );

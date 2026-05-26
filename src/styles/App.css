@@ -1,0 +1,232 @@
+/* ── Layout ── */
+.app {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  min-height: 100vh;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  background: #1e293b;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+  border-right: 1px solid #334155;
+}
+
+.sidebar-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 1.75rem;
+  letter-spacing: 0.02em;
+}
+
+.form-section {
+  margin-bottom: 1.5rem;
+}
+
+.form-section h2 {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #60a5fa;
+  margin-bottom: 0.75rem;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.fields label {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.fields input,
+.fields textarea {
+  width: 100%;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  color: #f1f5f9;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+
+.fields input:focus,
+.fields textarea:focus {
+  outline: none;
+  border-color: #60a5fa;
+}
+
+.fields textarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+.experience-entry {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.entry-top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-remove {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.btn-remove:hover {
+  color: #f87171;
+  background: #1e293b;
+}
+
+.btn-add {
+  width: 100%;
+  background: none;
+  border: 1px dashed #334155;
+  border-radius: 6px;
+  color: #60a5fa;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-top: 0.25rem;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.btn-add:hover {
+  border-color: #60a5fa;
+  background: #1e293b;
+}
+
+/* ── Preview pane ── */
+.preview-pane {
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.btn-download {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.55rem 1.4rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-download:hover {
+  background: #1d4ed8;
+}
+
+/* ── CV Document ── */
+#cv-preview {
+  background: white;
+  color: #1e293b;
+  width: 580px;
+  min-height: 820px;
+  padding: 2.5rem 3rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  border-radius: 3px;
+}
+
+.cv-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid #1e293b;
+}
+
+.cv-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.3rem;
+}
+
+.cv-contact {
+  display: flex;
+  gap: 1.25rem;
+  font-size: 0.75rem;
+  color: #475569;
+}
+
+.cv-section {
+  margin-bottom: 1.4rem;
+}
+
+.cv-section-title {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #2563eb;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.cv-entry {
+  margin-bottom: 0.8rem;
+}
+
+.cv-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.1rem;
+}
+
+.cv-entry h3 {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.cv-entry .date {
+  font-size: 0.72rem;
+  color: #64748b;
+}
+
+.cv-entry .subtitle {
+  font-size: 0.75rem;
+  color: #475569;
+  margin-bottom: 0.25rem;
+  font-style: italic;
+}
+
+.cv-entry p {
+  font-size: 0.775rem;
+  color: #334155;
+  line-height: 1.55;
+}
+
+.cv-placeholder {
+  color: #94a3b8;
+}
